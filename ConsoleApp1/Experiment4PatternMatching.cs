@@ -81,7 +81,7 @@ namespace ConsoleApp1
 					Console.WriteLine($"this is a pentagon..... corners: {p.Corners}{Environment.NewLine}");
 					break;
 
-				// notice .... the base class thing has to be at the bottom
+				// NOTE: .... the base class thing has to be at the bottom
 				case Shape s:
 					Console.WriteLine($"this is a shape with name: {s.Name} and corners: {s.Corners}{Environment.NewLine}");
 					break;

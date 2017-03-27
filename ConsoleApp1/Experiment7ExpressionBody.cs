@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
     // c# 6 introduced arrow function; but it was limited to methods, properties,...
-    // now it can be used for constructor, etc.
+    // now it can be used for constructor, finalizer etc.
+    // this was a community contribution
     class Experiment7ExpressionBody
     {
         public void SomeMethod()

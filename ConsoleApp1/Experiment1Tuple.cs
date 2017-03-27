@@ -15,19 +15,19 @@ namespace ConsoleApp1
 		public void SomeMethod()
 		{
             var oldTuple = OldStyleTuple(null);
-            Console.WriteLine($"{nameof(OldStyleTuple)} returns (type:{oldTuple.GetType()})");
+            Console.WriteLine($"OldStyleTuple returns (type:{oldTuple.GetType()})");
             Console.WriteLine($"values: {oldTuple.Item1} and {oldTuple.Item2}{Environment.NewLine}");
 
 			var someNumbers = new[] { 1, 2, 3, 4, 5, 6, 7 };
 
             // returns a simple one; no calculation is done here
 			var result1 = CalculateSumAndCount1(someNumbers);
-            Console.WriteLine($"{nameof(CalculateSumAndCount1)} returns (type:{result1.GetType()})");
+            Console.WriteLine($"CalculateSumAndCount1 returns (type:{result1.GetType()})");
             Console.WriteLine($"values: {result1.Item1} and {result1.Item2}{Environment.NewLine}");
 
             // returns another simple one; no calculation - but return tuple with names
 			var (s, c) = CalculateSumAndCount2(someNumbers);
-            Console.WriteLine($"{nameof(CalculateSumAndCount2)} returns (type:{(s,c).GetType()})");
+            Console.WriteLine($"CalculateSumAndCount2 returns (type:{(s,c).GetType()})");
             Console.WriteLine($"values: {s} and {c}{Environment.NewLine}");
 
             // same as before; but returns a calculated tuple
@@ -39,8 +39,10 @@ namespace ConsoleApp1
             var customerRecord = GetCustomerRecord(4);
             Console.WriteLine($"customerRecord.firstName: {customerRecord.firstName}{Environment.NewLine}");
 
-            ////// splatting - not working yet
-            //var avg = CalculateAverage(CalculateSumAndCount3(someNumbers));
+            //////// splatting - not working yet
+            ///*******
+            //    var avg = CalculateAverage(CalculateSumAndCount3(someNumbers));
+            //*****/
         }
 
         // this could be used along with splatting; this was not release with the current version

@@ -26,7 +26,7 @@ namespace ConsoleApp1
             // still in scope
             Console.WriteLine($"inline out vairable myInt2 ({myInt2}) is still visible{Environment.NewLine}");
 
-            ////// Note: it same not true for ref variable
+            ////// Note: same not true for ref variable
             ///******
             //    if (MethodWithRefVariable(ref int myInt3))
             //        Console.WriteLine($"ref value: {myInt3}");
@@ -36,7 +36,7 @@ namespace ConsoleApp1
             //////// not working yet
             /////******
             //    if (int.TryParse(someNumberAsAString, out *))
-            //    Console.WriteLine($"\"{someNumberAsAString}\" was parsed -> ...");
+            //      Console.WriteLine($"\"{someNumberAsAString}\" was parsed -> ...");
             ////*****/
         }
 

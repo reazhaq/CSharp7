@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
     // local function can be used like one time function within a function
+    // similar to anonymous function
+    // a good usage - let's say you have a method that does lots of stuff...
+    // break those into "good name" local function at the bottom
+    // use them in the main body of the method for better readablity
 	class Experiment5LocalFunctions
 	{
 		public void SomeMethod()
 		{
-			Console.WriteLine($"Fibonnacci 5 => {CalculateFibonnacci(5)}{Environment.NewLine}");
-			Console.WriteLine($"Fibonnacci 3 => {CalculateFibonnacci(3)}{Environment.NewLine}");
+			Console.WriteLine($"Fibonnacci 5 using local function => {CalculateFibonnacci(5)}{Environment.NewLine}");
+			Console.WriteLine($"Fibonnacci 3 using local function => {CalculateFibonnacci(3)}{Environment.NewLine}");
 
-            //// close but...
-            ICanUseFuncForTheSameThing(5);
+            //// some may say - "I Can Use Func For The Same Thing"....
+            //// close but... Yes - but not clean
+            Console.WriteLine($"Fibonnacci 5 using Func => {ICanUseFuncForTheSameThing(5)}{Environment.NewLine}");
+            Console.WriteLine($"Fibonnacci 3 using Func => {ICanUseFuncForTheSameThing(3)}{Environment.NewLine}");
 		}
 
         private int CalculateFibonnacci(int someNumber)
@@ -32,30 +38,32 @@ namespace ConsoleApp1
 			}
 		}
 
-        private void ICanUseFuncForTheSameThing(int someValue)
+        private int ICanUseFuncForTheSameThing(int someValue)
         {
-            int something = 10;
-            //// this doesn't work
-            //// have to separate the def from body
-            /*****
-                Func<int, int> someFunc = x =>
-                {
-                    if (x == 0)
-                        return 0;
-                    return x + someFunc(x - 1);
-                };
-            ******/
+            if (someValue < 0) return 0;
 
-            // this works - notice the separation of def and body
-            Func<int, int> someFunc = null;
-            someFunc = x =>
+            //// trying to do it in one pass - doesn't work
+            //// OneLineFunkyFib is called within the body - recursive call
+            ///****
+            //    Func<int, (int current, int previous)> OneLineFunkyFib = x =>
+            //    {
+            //        if (x == 0) return (1, 0);
+            //        var (c, p) = OneLineFunkyFib(x - 1);
+            //        return (c + p, c);
+            //    };
+            //****/
+
+            // declaration needs to be on a separate line from the body
+            Func<int, (int current, int previous)> FunkyFib = null;
+            FunkyFib = x =>
             {
-                if (x <= 0)
-                    return 0;
-                return x + someFunc(x - 1);
+                if (x == 0) return (1, 0);
+                var (c, p) = FunkyFib(x - 1);
+                return (c + p, c);
             };
 
-            something = someFunc(someValue);
+            // unlike local function; this call has to go to the bottom
+            return FunkyFib(someValue).current;
         }
     }
 }
