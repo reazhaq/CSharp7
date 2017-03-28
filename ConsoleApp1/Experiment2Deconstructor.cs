@@ -12,17 +12,20 @@ namespace ConsoleApp1
 	{
 		public string FirstName { get; private set; }
 		public string LastName { get; private set; }
+        private int Age { get; set; }
 
-		public SomeClass2(string first, string last)
+		public SomeClass2(string first, string last, int age)
 		{
 			FirstName = first;
 			LastName = last;
+            Age = age;
 		}
 
-		public void Deconstruct(out string first, out string last)
+		public void Deconstruct(out string first, out string last, out int age)
 		{
 			first = FirstName;
 			last = LastName;
+            age = Age;
 		}
 	}
 
@@ -30,7 +33,7 @@ namespace ConsoleApp1
 	{
 		public void SomeMethod()
 		{
-			var foo = new SomeClass2("jon", "doe");
+			var foo = new SomeClass2("jon", "doe", 24);
 
             // old style use; that was taking multiple lines
 			var fn = foo.FirstName;
@@ -38,9 +41,10 @@ namespace ConsoleApp1
 			Console.WriteLine($"foo.FirstName = {fn}, foo.LastName = {ln}{Environment.NewLine}");
 
             // new style use; one line
-			var (fn2, ln2) = foo;
-			Console.WriteLine($"{(fn2, ln2)} comes from foo Deconstruct with values{Environment.NewLine}" +
-                $"{fn2} and {ln2}{Environment.NewLine}");
+            // it can also return private ones; that have no property
+			var (fn2, ln2, ag) = foo;
+			Console.WriteLine($"{(fn2, ln2, ag)} comes from foo Deconstruct with values:" +
+                $" {fn2}, {ln2}, and {ag}{Environment.NewLine}");
 		}
 	}
 }
