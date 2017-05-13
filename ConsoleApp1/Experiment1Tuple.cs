@@ -39,11 +39,27 @@ namespace ConsoleApp1
             var customerRecord = GetCustomerRecord(4);
             Console.WriteLine($"customerRecord.firstName: {customerRecord.firstName}{Environment.NewLine}");
 
-            //////// splatting - not working yet
-            ///*******
-            //    var avg = CalculateAverage(CalculateSumAndCount3(someNumbers));
-            //*****/
-        }
+            /////// DURING THIS TALK AT AUSTIN .NET USER GROUP
+            /////// SOMEONE HAD ASKED WHAT OTHER WAYS TO DECLARE RETURN VARIABLE INSTEAD OF 'var'
+            /////// HERE ARE FEW EXAMPLES
+            //// ValueTuple<int,int> is one simple way
+            ValueTuple<int,int> blah = CalculateSumAndCount3(someNumbers);
+            Console.WriteLine($"blah.Item1 = {blah.Item1}");
+            //// (int, int) is another choice
+		    (int, int) blah2 = CalculateSumAndCount3(someNumbers);
+            Console.WriteLine($"blah2.Item1 = {blah2.Item1}");
+            //// let's say we don't need the 2nd part of the tuple; use wildcard
+		    var (s2, _) = CalculateSumAndCount3(someNumbers);
+            Console.WriteLine($"var (s2, _) -> s2={s2}");
+
+
+
+
+		    //////// splatting - not working yet
+		    ////*******
+		    //    var avg = CalculateAverage(CalculateSumAndCount3(someNumbers));
+		    //*****//
+		}
 
         // this could be used along with splatting; this was not release with the current version
         double CalculateAverage(int sum, int count) => count == 0 ? 0 : (sum / count);

@@ -27,17 +27,21 @@ namespace ConsoleApp1
             Console.WriteLine($"inline out vairable myInt2 ({myInt2}) is still visible{Environment.NewLine}");
 
             ////// Note: same not true for ref variable
-            ///******
+            /////
             //    if (MethodWithRefVariable(ref int myInt3))
             //        Console.WriteLine($"ref value: {myInt3}");
-            //*****/
+            /////
 
             //////// wildcard in the event that out variable is not needed
             //////// not working yet
-            /////******
+            ///// 
             //    if (int.TryParse(someNumberAsAString, out *))
             //      Console.WriteLine($"\"{someNumberAsAString}\" was parsed -> ...");
-            ////*****/
+            /////
+            /////-----------------------------------
+            /////// FOR WILDCARD USE UNDERSCORE NOT *
+            if (int.TryParse(someNumberAsAString, out _))
+                Console.WriteLine($"\"{someNumberAsAString}\" was parsed -> ...");
         }
 
         public bool MethodWithRefVariable(ref int something)
